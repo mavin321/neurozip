@@ -1,0 +1,26 @@
+# Build artifacts
+build/
+dist/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+CMakeCache.txt
+CMakeFiles/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Model files
+*.pt
+*.bin
+*.npz
+
+# Node/Web
+node_modules/
+web/dist/

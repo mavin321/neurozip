@@ -1,0 +1,21 @@
+# Project: NeuroZip Alpha v0.9
+# Date: 2025-11-15
+# Author: Mavin P.
+# ---
+
+[Configuration]
+compression_level = 9  # Max compression
+output_filename = compressed_data.nzp
+log_verbosity = 2      # 0=Silent, 1=Errors, 2=Info, 3=Debug
+
+[Notes]
+1. Remember to implement robust CRC32 checking on read and write operations.
+2. The initial file header size should be fixed (38 bytes) to ensure predictable parsing.
+3. Need to investigate better error handling beyond the current ErrorCode enum. Specifically, how to return OS-level IO errors.
+
+[Dependencies]
+- std::cstdint (Confirmed)
+- std::string (Confirmed)
+- std::vector (Confirmed)
+
+# --- End of Notes ---
