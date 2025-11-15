@@ -1,0 +1,2 @@
+This is a small sample from Wikipedia for testing neurozip performance.
+Neural networks can be used to learn compression distributions.

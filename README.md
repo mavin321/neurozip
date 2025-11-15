@@ -141,7 +141,7 @@ neurozip/
 From project root:
 
 ```bash
-pip install torch fastapi uvicorn pydantic pytest
+pip install torch fastapi uvicorn pydantic pytest numpy
 ```
 
 _(On CPU-only machines, use CPU PyTorch builds.)_
@@ -238,11 +238,11 @@ Fill it with whatever you want NeuroZip to specialize in (natural language, logs
 From the project root:
 
 ```bash
-python -m neurozip.train \
+python -m python.neurozip.train \
   --data data/corpus.txt \
   --seq-len 256 \
-  --batch-size 64 \
   --hidden-size 256 \
+  --batch-size 64 \
   --epochs 2 \
   --lr 0.001 \
   --output model_checkpoint.pt
@@ -272,9 +272,7 @@ The C++ engine **cannot** read `.pt` files directly. You must export the model t
 From project root:
 
 ```bash
-python tools/export_model.py \
-  --input model_checkpoint.pt \
-  --output tiny_lstm.bin
+python -m tools.export_model   --input model_checkpoint.pt   --output tiny_lstm.bin
 ```
 
 This writes `tiny_lstm.bin` in the project root (or wherever you run the command).

@@ -10,7 +10,13 @@ option(NEUROZIP_BUILD_PYTHON "Build Python bindings" ON)
 # Core library
 add_subdirectory(src)
 
+# Optional Python bindings
 
+# Tests
+if (NEUROZIP_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(tests)
+endif()
 
 # CLI tools
 add_subdirectory(src/cli)

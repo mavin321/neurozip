@@ -2,9 +2,17 @@ import os
 import subprocess
 import tempfile
 
-NEUROZIP = "neurozip"
-NEUROUNZIP = "neurounzip"
-MODEL = "tiny_lstm.bin"    # ensure this exists
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the compiled neurozip.exe file.
+NEUROZIP = r"C:\Users\admin\python\neurozip\build\src\cli\neurozip.exe"
+
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the compiled neurounzip.exe file.
+NEUROUNZIP = r"C:\Users\admin\python\neurozip\build\src\cli\neurounzip.exe"
+
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the exported tiny_lstm.bin model.
+MODEL = r"C:\Users\admin\python\neurozip\tiny_lstm.bin"
 
 def run(cmd):
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)

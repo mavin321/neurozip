@@ -2,15 +2,28 @@ import subprocess
 import time
 import os
 
-NEUROZIP = "neurozip"
-NEUROUNZIP = "neurounzip"
-MODEL = "tiny_lstm.bin"
+# =======================================================
+# Configuration in backend/server.py
+# =======================================================
+
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the compiled neurozip.exe file.
+NEUROZIP = r"C:\Users\admin\python\neurozip\build\src\cli\neurozip.exe"
+
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the compiled neurounzip.exe file.
+NEUROUNZIP = r"C:\Users\admin\python\neurozip\build\src\cli\neurounzip.exe"
+
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the exported tiny_lstm.bin model.
+MODEL = r"C:\Users\admin\python\neurozip\tiny_lstm.bin"
 
 DATASETS = [
-    "datasets/enwiki_sample.txt",
-    "datasets/code_snippets.txt",
-    "datasets/logs_sample.txt",
+    "benchmarks/datasets/enwiki_sample.txt",
+    "benchmarks/datasets/code_snippets.txt",
+    "benchmarks/datasets/logs_sample.txt",
 ]
+
 
 def run(cmd):
     t0 = time.time()

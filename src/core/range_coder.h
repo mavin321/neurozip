@@ -5,42 +5,44 @@
 
 namespace neurozip {
 
-/// Simple byte-based range coder using a 32-bit range.
-/// We encode bytes using cumulative probability tables (0..256).
+/// Simple 32-bit arithmetic coder over bytes.
+/// Uses cumulative frequencies in [0, totalFreq].
 
 class RangeEncoder {
 public:
     RangeEncoder();
 
+    // Encode symbol with cumulative frequency 'cumFreq' and width 'freq'
+    // where totalFreq = sum of all symbol frequencies.
     void encode_symbol(
-        uint32_t cumFreq,     // cumulative frequency of symbol
-        uint32_t freq,        // frequency of symbol
-        uint32_t totalFreq    // total frequency
+        uint32_t cumFreq,
+        uint32_t freq,
+        uint32_t totalFreq
     );
 
+    // Finalize the stream (flush remaining state).
     void finish();
 
     const std::vector<uint8_t>& buffer() const { return out_; }
 
 private:
-    uint32_t low_;
-    uint32_t range_;
-    uint32_t cache_;
-    uint32_t cacheSize_;
+    uint32_t low_;     // low end of current interval
+    uint32_t high_;    // high end of current interval
     std::vector<uint8_t> out_;
 
-    void shift();
+    void output_byte(uint8_t b);
 };
 
 class RangeDecoder {
 public:
     RangeDecoder(const uint8_t* data, size_t size);
 
-    /// Given totalFreq and an input value, returns the symbol's cumulative index.
-    /// Caller uses this index with its own model/table to find symbol and its freq.
+    /// Return the cumulative index in [0, totalFreq) corresponding
+    /// to the current code position.
     uint32_t get_cum(uint32_t totalFreq) const;
 
-    /// Update decoder state with symbol frequencies.
+    /// Advance the decoder state by consuming the symbol with
+    /// [cumFreq, cumFreq + freq) in the cumulative distribution.
     void decode_symbol(
         uint32_t cumFreq,
         uint32_t freq,
@@ -50,8 +52,10 @@ public:
     bool eof() const { return pos_ >= size_; }
 
 private:
+    uint32_t low_;
+    uint32_t high_;
     uint32_t code_;
-    uint32_t range_;
+
     const uint8_t* data_;
     size_t size_;
     size_t pos_;

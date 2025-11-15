@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 
 from .dataset import ByteDataset
 from .model import TinyLSTM
-from .tokenize import file_to_bytes
+from .nz_tokenize import file_to_bytes
 
 def evaluate(checkpoint_path: str, data_path: str, seq_len: int = 256):
     ckpt = torch.load(checkpoint_path, map_location="cpu")

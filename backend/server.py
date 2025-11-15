@@ -12,9 +12,17 @@ from fastapi.middleware.cors import CORSMiddleware
 # -------------------------------------------------------------------
 
 # Path to the neurozip CLI binaries
-NEUROZIP_BIN = "neurozip"          # make sure it's on PATH, or provide absolute path
-NEUROUNZIP_BIN = "neurounzip"      # same
-MODEL_PATH = "tiny_lstm.bin"       # path to your exported model
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the compiled neurozip.exe file.
+NEUROZIP_BIN = r"C:\Users\admin\python\neurozip\build\src\cli\neurozip.exe"
+
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the compiled neurounzip.exe file.
+NEUROUNZIP_BIN = r"C:\Users\admin\python\neurozip\build\src\cli\neurounzip.exe"
+
+# 🚨 CRITICAL: Check and update this path 
+# It must point to the exported tiny_lstm.bin model.
+MODEL_PATH = r"C:\Users\admin\python\neurozip\tiny_lstm.bin"
 
 # Ensure model exists
 if not os.path.exists(MODEL_PATH):

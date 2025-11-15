@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-from ..python.neurozip import export_tiny_lstm
+from python.neurozip.export import export_tiny_lstm
 
 def main():
     ap = argparse.ArgumentParser(description="Export PyTorch LSTM -> neurozip binary")
