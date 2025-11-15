@@ -7,9 +7,24 @@
 
 namespace neurozip {
 
-struct ModelContext;
+// ---------------------------
+// FULL definition of ModelContext MUST be here
+// ---------------------------
+struct ModelContext {
+    float h[256];   // hidden state
+    float c[256];   // cell state
 
-/// Abstract interface for a compression model.
+    ModelContext() {
+        for (int i = 0; i < 256; i++) {
+            h[i] = 0.0f;
+            c[i] = 0.0f;
+        }
+    }
+};
+
+// ---------------------------
+// Abstract interface for a compression model
+// ---------------------------
 class ICompressionModel {
 public:
     virtual ~ICompressionModel() = default;
@@ -29,15 +44,15 @@ public:
     virtual uint64_t model_hash() const = 0;
 };
 
-/// Compress a buffer using a model.
+// ---------------------------
+// Compression helpers
+// ---------------------------
 std::vector<uint8_t> compress_buffer(
     const ICompressionModel& model,
     const uint8_t* data,
     size_t size
 );
 
-/// Decompress a buffer using a model.
-/// On success, returns true and fills outData; on failure, returns false.
 bool decompress_buffer(
     const ICompressionModel& model,
     const uint8_t* compressed,

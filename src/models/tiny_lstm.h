@@ -31,10 +31,7 @@ struct LstmWeights {
     std::vector<float> b_out;
 };
 
-struct ModelContext {
-    std::vector<float> h; // hidden state
-    std::vector<float> c; // cell state
-};
+
 
 class TinyLstmModel : public ICompressionModel {
 public:
