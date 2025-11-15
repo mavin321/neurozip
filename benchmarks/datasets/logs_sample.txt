@@ -1,0 +1,3 @@
+2024-01-01 INFO server started
+2024-01-01 INFO user login
+2024-01-01 WARN low memory
